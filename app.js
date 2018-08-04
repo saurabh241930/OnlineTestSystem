@@ -22,11 +22,11 @@ app.get("/demoPaper",(req,res)=>{
 })
 
 app.get("/JEE-Test",(req,res)=>{
-	res.render("JEE")
+	res.render("JEE-TEST")
 })
 
 app.get("/NEET-TEST",(req,res)=>{
-	res.render("NEET")
+	res.render("NEET-TEST")
 })
 
 app.get("/JEE-STUDENTS",(req,res)=>{
