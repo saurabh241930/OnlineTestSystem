@@ -17,8 +17,25 @@ app.get("/login",(req,res)=>{
 	res.render("login")
 })
 
-app.get("/demoPaper",function(req,res){
+app.get("/demoPaper",(req,res)=>{
 	res.render("paper")
+})
+
+app.get("/JEE-Test",(req,res)=>{
+	res.render("JEE")
+})
+
+app.get("/NEET-TEST",(req,res)=>{
+	res.render("NEET")
+})
+
+app.get("/JEE-STUDENTS",(req,res)=>{
+	res.render("JEE-STUDENTS")
+})
+
+
+app.get("/NEET-STUDENTS",(req,res)=>{
+	res.render("NEET-STUDENTS")
 })
 
 
