@@ -17,6 +17,10 @@ app.get("/login",(req,res)=>{
 	res.render("login")
 })
 
+app.get("/demoPaper",function(req,res){
+	res.render("paper")
+})
+
 
 
 
