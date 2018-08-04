@@ -12,9 +12,9 @@ app.get("/",(req,res)=>{
 	
 	res.render("home")
 })
-app.get("/",(req,res)=>{
+app.get("/login",(req,res)=>{
 	
-	res.render("main")
+	res.render("login")
 })
 
 
