@@ -77,7 +77,7 @@ app.get("/demoPaper",(req,res)=>{
 
 
 
-
+// admin
 app.get("/tests",(req,res)=>{
 
 
@@ -117,7 +117,7 @@ app.get("/test/:id",(req,res)=>{
 
 })
 
-
+// admin
 app.get("/addQuestions/:id",(req,res)=>{
 
 	test.findById(req.params.id,function(err,test){
@@ -134,13 +134,13 @@ app.get("/addQuestions/:id",(req,res)=>{
 
 })
 
-
+// admin
 app.get("/testForm",(req,res)=>{
 	res.render("testForm")
 })
 
 
-
+// admin
 app.post("/submitTest",(req,res)=>{
 
 	var newTest = {
@@ -163,7 +163,7 @@ app.post("/submitTest",(req,res)=>{
 
 
 
-
+// admin
 app.post("/submitQuestion/:id",(req,res)=>{
 
 	var newQuestion = {
