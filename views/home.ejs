@@ -1,6 +1,13 @@
 <% include ./partials/header %>
 <h1>about classes</h1>
 
+<%tests.forEach(function(test){%>
+    <button style="font-size:30px">Test on <a href="/test/<%=test._id%>">
+        <%=test.forBatch%> of batch <%=test.createdOn%></a></button><br><br>
+
+<%})%>
+
+
 <h1>about classes</h1>
 <% include ./partials/footer %>
 
