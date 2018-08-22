@@ -1,80 +1,107 @@
+var  methodOverride = require('method-override'),
+         bodyParser = require('body-parser'),
+           mongoose = require('mongoose'),
+            express = require('express'),
+              flash = require('connect-flash'),
+//                Blog = require('./models/blog'),
+//              Course = require('./models/course'),
+//              seedDB = require('./seeds'),
+//             Comment = require('./models/comment'),
+               User = require('./models/user'),
+//             Profile = require('./models/profile'),
+           passport = require('passport'),
+      LocalStrategy = require('passport-local'),
+        
+                app = express();
 
-var express           = require('express');
-var app               = express();
-var bodyParser        = require("body-parser");
-var mongoose = require('mongoose')
-var passport = require('passport')
-var LocalStrategy = require('passport-local')
-
-var question = require('./models/question');
-var test = require('./models/test');
-var User = require('./models/User');
-
-var authRoutes = require('./routes/index');
-var adminRoutes = require('./routes/admin');
+//   var commentRoutes = require('./routes/comments'),
+//         blogsRoutes = require('./routes/blogs'),
+//          authRoutes = require('./routes/index'),
+//          subsRoutes = require('./routes/subscribe'),
+//       profileRoutes = require('./routes/profile'),
+//           pinRoutes = require('./routes/pin'),
+//          likeRoutes = require('./routes/like'),
+//       complexRoutes = require('./routes/complex');
+       
+  var  authRoutes = require('./routes/index');
+  var  adminRoutes = require('./routes/adminRoutes');
 
 
-var methodOverride = require('method-override');
 
+//seedDB(); //Seed the database
 
-app.use(authRoutes);
-app.use(adminRoutes);
-
-//////////////////////////////////////////////////////////////////////////
-  mongoose.Promise = global.Promise;
-  var url = process.env.DATABASEURL || "mongodb://localhost/test"
-  
-	 mongoose.connect(url);
-	 app.set('view engine','ejs');
-	 app.use(express.static(__dirname +'/public'));
-	 app.use(bodyParser.urlencoded({extended:true}));
-	 app.use(methodOverride('_method'));
-///////////////////////////////////////////////////////////////////////////
+//================================================PASSPORT CONFIGURATION==================================================//
 
 app.use(require('express-session')({
-	secret: "This is secret",
-	resave: false,
-	saveUninitialized: false
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
+  secret: "This is secret",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-  passport.use(new LocalStrategy(User.authenticate()));
-  passport.serializeUser(User.serializeUser());
-  passport.deserializeUser(User.deserializeUser());
-  
-  //================================================PASSPORT CONFIGURATION==================================================//
-  
-  
-  /////passing "currentUser" to every template/////////////////
-  app.use(function(req, res, next) {
-	res.locals.currentUser = req.user;
-	next();
-  })
-  
+//================================================PASSPORT CONFIGURATION==================================================//
 
 
-
-
-
-
-
-app.get("/demoPaper",(req,res)=>{
-	res.render("paper")
+/////passing "currentUser" to every template/////////////////
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  res.locals.message = req.flash("error");
+  next();
 })
 
+/////////////////////////////////////////////////////////////
 
 
 
+   //==================================================APP CONFIG=========================================================//
+   mongoose.connect('mongodb://localhost/onlineTest', { useMongoClient: true, });
+   app.set('view engine','ejs');
+   app.use(express.static(__dirname +'/public'));
+   app.use(bodyParser.urlencoded({extended:true}));
+   app.use(methodOverride('_method'));
+  //===================================================APP CONFIG==========================================================//
 
 
 
+// //==============ADDING DATA================//
+//     Course.create({
+//      courseTitle:'HTML basics',
+//      titleImage :'http://www.spilgames.com/wp-content/uploads/2014/12/documentation_html5_logo.png',
+//      Chapters:[{"lessons":"Part 1"},{"lessons":"Part2"},{"lessons":"Part3"},{"lessons":"Part4"},{"lessons":"Part5"}]
+//     });
+
+// var datas = db.blogs.find({"creater.username":"developer"});
+// console.log(datas);
 
 
 
+    
 
 
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!');
+  
+//==============ADDING DATA================//
+
+//==================================================RESTFUL ROUTES=========================================================//
+
+
+
+ app.use(authRoutes);
+ app.use(adminRoutes);
+// app.use(commentRoutes);
+// app.use(blogsRoutes);
+// app.use(subsRoutes);
+// app.use(profileRoutes);
+// app.use(pinRoutes);
+// app.use(likeRoutes);
+// app.use(complexRoutes);
+
+
+app.listen(3000, function () {
+  console.log('Server started');
 });
