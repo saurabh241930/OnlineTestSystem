@@ -207,23 +207,23 @@ textarea {
         <div id="login">   
           <h1>Welcome Back!</h1>
           
-          <form action="/" method="post">
+          <form action="/login" method="post">
           
             <div class="field-wrap">
             <label>
-              Full Name<span class="req">*</span>
+              Username<span class="req">*</span>
             </label>
-            <input type="text"required autocomplete="off"/>
+            <input type="text"required autocomplete="off"  name="username"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password"required autocomplete="off"  name="password"/>
           </div>
           
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
+          <p class="forgot"><a href="/forgot">Forgot Password?</a></p>
           
           <button class="button button-block"/>Log In</button>
 
@@ -234,7 +234,7 @@ textarea {
         <div id="signup">   
           <h1>Sign Up </h1>
           
-          <form action="/" method="post">
+          <form action="/register" method="post">
           
           <!-- <div class="top-row">
             <div class="field-wrap">
@@ -254,30 +254,37 @@ textarea {
 
           <div class="field-wrap">
             <label>
+              Username<span class="req">*</span>
+            </label>
+            <input type="text" required autocomplete="off" name="username"/>
+          </div>
+
+          <div class="field-wrap">
+            <label>
               Full Name<span class="req">*</span>
             </label>
-            <input type="text"required autocomplete="off"/>
+            <input type="text" required autocomplete="off"  name="fullname"/>
           </div>
 
           <div class="field-wrap">
             <label>
               Email<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off"/>
+            <input type="email" required autocomplete="off"  name="email"/>
           </div>
 
-          <div class="field-wrap">
+          
             <div class="field-wrap">
-            <select style="width: 100%;background: rgba(19, 35, 47, 0.9);color:white;height: 40px">
+            <select style="width: 100%;background: rgba(19, 35, 47, 0.9);color:white;height: 40px"  name="class">
 		      <option value="">Class</option>
 		      <option value ="">JEE</option>
 		      <option value ="">JEE_ADV</option>
 		      <option value ="">NEET</option>
          	</select>
-          </div>          </div>
+          </div>          
 
           <div class="field-wrap">
-            <select style="width: 100%;background: rgba(19, 35, 47, 0.9);color:white;height: 40px">
+            <select style="width: 100%;background: rgba(19, 35, 47, 0.9);color:white;height: 40px"  name="Batch">
 		      <option value="">Batch</option>
 		      <option value ="">1</option>
 		      <option value ="">2</option>
@@ -289,7 +296,7 @@ textarea {
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off"/>
+            <input type="password" required autocomplete="off"  name="password"/>
           </div>
           
           <button type="submit" class="button button-block"/>Sign Up</button>
