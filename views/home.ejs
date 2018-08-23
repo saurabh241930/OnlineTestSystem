@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codeply preview</title>
+  <title>Aromatic Classes</title>
   <base target="_self">
   <meta name="description" content="Flexbox layout for Bootstrap 4 with a fixed navbar, sidebar, header full height and remaining width content. This is a 2 column layout with navbar and sidebar that use the affix to become sticky after scroll." />
   <meta name="google" value="notranslate">
@@ -32,10 +32,10 @@
 <body data-spy="scroll" data-target="#sidemenu" data-offset="15">
   
   
-  <div class="container bg-light">
+  <div class="bg-dark" style="background-color:#007EA7 !important">
 <div class="p-5 mb-0 d-flex flex-column" id="header">
-        <h1>Hey.</h1>
-        <p>Dis my Bootstrap 4 layout</p>
+        <h1 style="text-align: center;color: white"><strong>Aromatic Classes</strong></h1>
+        <p style="text-align: center;color: white;font-size: 14px">Online test system</p>
     </div>
 </div>
 <nav class="navbar navbar-light navbar-expand-md">
@@ -58,7 +58,7 @@
 </nav>
 <div class="container h-10" id="content">
     <div class="row h-100 mt-5" >
-        <aside class="col-md-3 bg-dark" id="left" style="background-color: #e3f2fd;">
+        <aside class="col-md-3 bg-dark" id="left" style="background-color:#00171F !important"">
             <div class="mt-5 mb-3" id="sidemenu">
                 <div class="card">
                     <div class="card-body" ">
@@ -79,17 +79,10 @@
         <main class="col py-5">
             <div class="row">
                 <div class="col">
-                    <ul class="nav nav-tabs small" role="tablist">
-                        <li class="nav-item"><a class="nav-link text-uppercase active" data-toggle="tab" href="#tab1" role="tab">Home</a></li>
-                        <li class="nav-item ml-auto"><a class="nav-link text-uppercase" data-toggle="tab" href="#tab2" role="tab">List</a></li>
-                        <li class="nav-item"><a class="nav-link text-uppercase" data-toggle="tab" href="#tab3" role="tab">More</a></li>
-                    </ul>
+                    
                     <div class="tab-content py-3">
                         <div class="tab-pane active" id="tab1" role="tabpanel">
-                            <h2 class="mb-3">Test Section</h2>
-
-                            <span class="anchor" id="sec1"></span>
-                            <h5>Coming Test</h5>
+                       
 
                             <%tests.forEach(function(test){%>
                          
@@ -100,14 +93,20 @@
                              margin: 0 auto;
                              box-shadow: 0 2px 4px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23); ">
 
-                            <button type="button" class="btn btn-secondary btn-lg btn-block" style="font-size: 16px">
+                            <button type="button" class="btn btn-secondary btn-lg btn-block" 
+                            style="font-size: 16px;background-color:#00A8E8;border-radius: 0px;border: solid 0px #fff;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);">
                             <strong><span style="font-size: 25px"><%=test.forBatch%></span></strong> Test <br><br>
                             scheduled on <strong><%=test.createdOn.toDateString()%></strong>
                             </button>
                         
-                        <a class="btn btn-primary btn-lg" style="margin-top:150px;font-size: 35px " href="">Start test</a>
+                        <a class="btn btn-outline-primary" 
+                        style="margin-top:150px;font-size: 25px;padding: 20px;border-radius: 0px;box-shadow: 0 2px 4px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);"
+                         href="/test/<%=test._id%>"><strong>Start test</strong></a>
 
                              </div>
+
+                             <br><br>
 
                              <%})%>
 
@@ -243,40 +242,32 @@
             </div>
             <div class="modal-body">
 
+
+<form>
+  
+</form>
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">Text</label>
+                    <label for="example-text-input" class="col-2 col-form-label">Username</label>
                     <div class="col-10">
                         <input class="form-control" type="text" value="Mike McDonald" id="example-text-input">
                     </div>
                 </div>
+
+
                 <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">Search</label>
+                    <label for="example-search-input" class="col-2 col-form-label">Password</label>
                     <div class="col-10">
-                        <input class="form-control" type="search" value="How to responsive design" id="example-search-input">
+                        <input class="form-control" type="password" >
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                    <div class="col-10">
-                        <input class="form-control" type="email" value="email@example.com" id="example-email-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-url-input" class="col-2 col-form-label">URL</label>
-                    <div class="col-10">
-                        <input class="form-control" type="url" value="http://codeply.com" id="example-url-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-tel-input" class="col-2 col-form-label">Phone</label>
-                    <div class="col-10">
-                        <input class="form-control" type="tel" value="1-(202)-555-5555" id="example-tel-input">
-                    </div>
-                </div>
+
+
+
+            
             </div>
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-primary">Save changes</button>
+                <button class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>
