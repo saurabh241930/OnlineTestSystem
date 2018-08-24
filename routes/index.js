@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var User = require('../models/user');
+var User = require('../models/User');
 var test = require('../models/test');
 var question = require('../models/question');
 var flash = require('connect-flash');
@@ -24,18 +24,18 @@ router.get("/test/:id",(req,res)=>{
 
   test.findById(req.params.id,function(err,test){
     if (err) {
-      console.log(err); 
-    } else {    
+      console.log(err);
+    } else {
       question.find({'testId':test._id},function(err,questions){
         if (err) {
           console.log(err);
-          
+
         } else {
           res.render("questionPaper",{questions:questions})
         }
-                     
+
       })
-      
+
     }
   })
 
@@ -111,4 +111,4 @@ function isLoggedIn(req,res,next){
 }
 
 
- module.exports = router;    
+ module.exports = router;

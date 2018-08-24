@@ -7,11 +7,11 @@ var  methodOverride = require('method-override'),
 //              Course = require('./models/course'),
 //              seedDB = require('./seeds'),
 //             Comment = require('./models/comment'),
-               User = require('./models/user'),
+               User = require('./models/User'),
 //             Profile = require('./models/profile'),
            passport = require('passport'),
       LocalStrategy = require('passport-local'),
-        
+
                 app = express();
 
 //   var commentRoutes = require('./routes/comments'),
@@ -22,7 +22,7 @@ var  methodOverride = require('method-override'),
 //           pinRoutes = require('./routes/pin'),
 //          likeRoutes = require('./routes/like'),
 //       complexRoutes = require('./routes/complex');
-       
+
   var  authRoutes = require('./routes/index');
   var  adminRoutes = require('./routes/adminRoutes');
 
@@ -80,11 +80,11 @@ app.use(function(req,res,next){
 
 
 
-    
 
 
 
-  
+
+
 //==============ADDING DATA================//
 
 //==================================================RESTFUL ROUTES=========================================================//

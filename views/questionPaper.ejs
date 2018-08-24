@@ -24,7 +24,9 @@
 watch_later
 </i><br><span style="color: white;font-size: 30px"><strong>3:00:00</strong></span>
 	</div>
-
+<div>
+  <button id="button1">button1</button>
+</div>
 
 	
 
@@ -53,7 +55,7 @@ margin: 0 auto;margin-top: 100px;">
 <div class="custom-radios">
   <div>
   	<span style="font-size: 25px"><strong>(a)</strong></span>
-    <input type="radio" id="color-1" name="color" value="color-1">
+    <input type="radio" class="color-1" id="color-1" name="color" value="color-1">
     <label for="color-1">
       <span>
         
@@ -63,7 +65,7 @@ margin: 0 auto;margin-top: 100px;">
   
   <div>
   	<span style="font-size: 25px"><strong>(b)</strong></span>
-    <input type="radio" id="color-2" name="color" value="color-2">
+    <input type="radio" class="color-2" id="color-2" name="color" value="color-2">
     <label for="color-2">
       <span>
       </span>
@@ -72,7 +74,7 @@ margin: 0 auto;margin-top: 100px;">
   
    <div>
   	<span style="font-size: 25px"><strong>(c)</strong></span>
-    <input type="radio" id="color-3" name="color" value="color-3">
+    <input type="radio" class="color-3" id="color-3" name="color" value="color-3">
     <label for="color-3">
       <span>
       </span>
@@ -81,7 +83,7 @@ margin: 0 auto;margin-top: 100px;">
 
   <div>
   	<span style="font-size: 25px"><strong>(d)</strong></span>
-    <input type="radio" id="color-4" name="color" value="color-4">
+    <input type="radio" class="color-4" id="color-4" name="color" value="color-4">
     <label for="color-4">
       <span>
       </span>
@@ -182,3 +184,52 @@ margin: 0 auto;margin-top: 100px;">
         <%=question.QuestionLink%> 
 
 <%})%>
+
+
+<script>
+  document.getElementById("color-1").addEventListener("click", buttoncolor);
+
+function buttoncolor() {
+    document.getElementById("button1").style.backgroundColor = "red";
+}
+
+document.getElementById("color-2").addEventListener("click", buttoncolor);
+
+function buttoncolor() {
+    document.getElementById("button1").style.backgroundColor = "red";
+}
+
+document.getElementById("color-3").addEventListener("click", buttoncolor);
+
+function buttoncolor() {
+    document.getElementById("button1").style.backgroundColor = "red";
+}
+
+document.getElementById("color-4").addEventListener("click", buttoncolor);
+
+function buttoncolor() {
+    document.getElementById("button1").style.backgroundColor = "red";
+}
+
+
+
+
+
+$(document).ready(function(){
+    $(".color-1").click(function(){
+        $("#color-1").prop("checked", true);
+    });
+    $(".color-2").click(function(){
+        $("#color-2").prop("checked", true);
+    });
+    $(".color-3").click(function(){
+        $("#color-3").prop("checked", true);
+    });
+    $(".color-4").click(function(){
+        $("#color-4").prop("checked", true);
+    });
+
+});
+
+
+</script>
