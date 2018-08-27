@@ -11,16 +11,15 @@ var UserSchema = new mongoose.Schema({
   resetPasswordExpires: Date,
   Batch:String,
   class:String,
+
   AttemptedTests:[
     {
         id:{
         type : mongoose.Schema.Types.ObjectId,
-        ref : "Test"
+        ref : "testRecord"
         },
-        markedKeys:[{type:String,default:""}],
         heldOn:Date,
-        fromBatch:String,
-        score:Number
+        marksObtained:Number,
         }
   ]
   

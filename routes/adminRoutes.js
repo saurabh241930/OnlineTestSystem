@@ -76,8 +76,8 @@ router.get("/testForm",(req,res)=>{
 router.post("/submitTest",(req,res)=>{
 
   var newTest = {
-    forBatch:req.body.forBatch
-
+    forBatch:req.body.forBatch,
+    createdOn:req.body.createdOn
   }
 
     test.create(newTest,function(err,test){
@@ -101,7 +101,8 @@ router.post("/submitQuestion/:id",(req,res)=>{
   var newQuestion = {
     QuestionLink:req.body.QuestionLink,
     correctOption:req.body.correctOption,
-    testId:req.params.id
+    testId:req.params.id,
+    Subject:req.body.Subject
   }
 
     question.create(newQuestion,function(err,question){

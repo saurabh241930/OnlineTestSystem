@@ -1,7 +1,24 @@
 <form action="/submitQuestion/<%=test._id%>" method="POST">
 
-<input type="text"  name="QuestionLink" placeholder="QuestionLink">
-<input type="text"  name="correctOption" placeholder="correctOption">
+<input type="text"  name="QuestionLink" placeholder="QuestionLink"><br><br>
+
+<label>Correct Option</label>
+<select name="correctOption">
+  <option value="a">a</option>
+  <option value="b">b</option>
+  <option value="c">c</option>
+  <option value="d">d</option>
+</select><br><br>
+
+<label>Choose Subject</label>
+<select name="Subject">
+  <option value="Physics">Physics</option>
+  <option value="Chemistry">Chemistry</option>
+  <option value="Maths">Maths</option>
+  <option value="Biology">Biology</option>
+
+</select><br><br>
+
 <button type="submit">submit</button>
 
 </form>

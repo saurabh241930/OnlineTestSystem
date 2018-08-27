@@ -3,6 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/User');
 var test = require('../models/test');
+var testRecord = require('../models/testRecord');
+
 var question = require('../models/question');
 var flash = require('connect-flash');
 
@@ -29,9 +31,11 @@ router.get("/test/:id",(req,res)=>{
       question.find({'testId':test._id},function(err,questions){
         if (err) {
           console.log(err);
-
+    
         } else {
-          res.render("questionPaper",{questions:questions})
+   
+          var testId = req.params.id;
+          res.render("questionPaper",{questions:questions,testId:testId})
         }
 
       })
@@ -42,6 +46,72 @@ router.get("/test/:id",(req,res)=>{
 
 
 })
+
+
+router.post("/submitPaper/:testId",function(req,res){
+
+
+User.findById(req.user._id,function(err,user){
+  if (err) {
+    throw err;
+  } else {
+
+
+    var newTestRecord = {
+      testId:req.params.testId,
+      studentId:user._id,
+      studentName:user.fullName
+    }
+
+    testRecord.create(newTestRecord,function(err,testRecord) {
+      if (err) {
+        throw err;
+      } else {
+  Object.entries(req.body).forEach(function([questionsId,enteredKey]){
+      question.findById(questionsId,function(err,question){
+        if (err) {
+           throw err;
+               } else {
+
+                        if (enteredKey.toString() === question.correctOption.toString()) {
+                        testRecord.marksObtained = testRecord.marksObtained + 4;
+                        testRecord.save()
+                        }else if (enteredKey.toString() === "None") {
+                        testRecord.marksObtained = testRecord.marksObtained 
+                        testRecord.save()
+                        } else {
+                        testRecord.marksObtained = testRecord.marksObtained - 1;
+                        testRecord.save()   
+                         }
+
+
+        
+   
+
+  }
+})
+
+})
+
+        var  newTestAttemp = {
+        id:testRecord._id,
+        heldOn:testRecord.createdOn,
+        marksObtained:testRecord.marksObtained
+        } 
+
+        user.AttemptedTests.push(newTestAttemp)
+        user.save()
+
+      }
+    })
+  }
+})
+
+res.send('success')
+
+})
+
+ 
 
 
 
