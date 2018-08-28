@@ -10,6 +10,44 @@ var flash = require('connect-flash');
 
 
 
+router.get("/profile",function (req,res) {
+
+User.findById(req.user._id,function (err,user) {
+  if (err) {
+    console.log(err)
+  } else {
+
+     var AttemptedTests = user.AttemptedTests;
+
+     var testDates = []
+     var marksObtainedArray = []
+
+     AttemptedTests.forEach(function(attemptedTestRecord){
+     
+     testRecord.findById(attemptedTestRecord.id,function (err,testRecord) {
+      if (err) {
+        console.log(err)
+      } else {
+          testDates.push(testRecord.createdOn.toDateString())
+          marksObtainedArray.push(testRecord.marksObtained)
+      }
+       
+     
+
+     })
+
+     })
+
+    console.log(testDates)
+    console.log(marksObtainedArray)
+
+     res.render("profile")
+  }
+})
+
+ 
+})
+
 
  router.get("/",(req,res)=>{
   test.find({},function(err,tests){
