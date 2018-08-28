@@ -53,17 +53,13 @@ router.get("/test/:id",(req,res)=>{
 
 
 router.get("/addQuestions/:id",(req,res)=>{
-
   test.findById(req.params.id,function(err,test){
     if (err) {
       console.log(err);
-
     } else {
-
       res.render("questionForm",{test:test})
     }
   })
-
 })
 
 
@@ -74,23 +70,17 @@ router.get("/testForm",(req,res)=>{
 
 
 router.post("/submitTest",(req,res)=>{
-
   var newTest = {
     forBatch:req.body.forBatch,
     createdOn:req.body.createdOn
   }
-
-    test.create(newTest,function(err,test){
-      if (err) {
-        console.log(err);
-
-      } else {
-        console.log(test);
-
-      }
-})
-
-
+  test.create(newTest,function(err,test){
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(test);
+    }
+  })
 })
 
 

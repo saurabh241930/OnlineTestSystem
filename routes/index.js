@@ -4,48 +4,34 @@ var passport = require('passport');
 var User = require('../models/User');
 var test = require('../models/test');
 var testRecord = require('../models/testRecord');
-
 var question = require('../models/question');
 var flash = require('connect-flash');
 
 
 
 router.get("/profile",function (req,res) {
-
-User.findById(req.user._id,function (err,user) {
-  if (err) {
+  User.findById(req.user._id,function (err,user) {
+    if (err) {
     console.log(err)
-  } else {
-
-     var AttemptedTests = user.AttemptedTests;
-
-     var testDates = []
-     var marksObtainedArray = []
-
-     AttemptedTests.forEach(function(attemptedTestRecord){
-     
-     testRecord.findById(attemptedTestRecord.id,function (err,testRecord) {
-      if (err) {
-        console.log(err)
-      } else {
-          testDates.push(testRecord.createdOn.toDateString())
-          marksObtainedArray.push(testRecord.marksObtained)
-      }
-       
-     
-
-     })
-
-     })
-
-    console.log(testDates)
-    console.log(marksObtainedArray)
-
-     res.render("profile")
-  }
-})
-
- 
+    } else {
+      var AttemptedTests = user.AttemptedTests;
+      var testDates = []
+      var marksObtainedArray = []
+      AttemptedTests.forEach(function(attemptedTestRecord){
+        testRecord.findById(attemptedTestRecord.id,function (err,testRecord) {
+          if (err) {
+            console.log(err)
+          } else {
+            testDates.push(testRecord.createdOn.toDateString())
+            marksObtainedArray.push(testRecord.marksObtained)
+          }
+        })
+      })
+      console.log(testDates)
+      console.log(marksObtainedArray)
+      res.render("profile")
+    }
+  })
 })
 
 
@@ -61,7 +47,6 @@ User.findById(req.user._id,function (err,user) {
 
 
 router.get("/test/:id",(req,res)=>{
-
   test.findById(req.params.id,function(err,test){
     if (err) {
       console.log(err);
@@ -69,84 +54,60 @@ router.get("/test/:id",(req,res)=>{
       question.find({'testId':test._id},function(err,questions){
         if (err) {
           console.log(err);
-    
         } else {
-   
           var testId = req.params.id;
           res.render("questionPaper",{questions:questions,testId:testId})
         }
-
       })
-
     }
   })
-
-
-
 })
 
 
 router.post("/submitPaper/:testId",function(req,res){
-
-
-User.findById(req.user._id,function(err,user){
-  if (err) {
-    throw err;
-  } else {
-
-
-    var newTestRecord = {
-      testId:req.params.testId,
-      studentId:user._id,
-      studentName:user.fullName
-    }
-
-    testRecord.create(newTestRecord,function(err,testRecord) {
-      if (err) {
-        throw err;
-      } else {
-  Object.entries(req.body).forEach(function([questionsId,enteredKey]){
-      question.findById(questionsId,function(err,question){
+  User.findById(req.user._id,function(err,user){
+    if (err) {
+      throw err;
+    } else {
+      var newTestRecord = {
+        testId:req.params.testId,
+        studentId:user._id,
+        studentName:user.fullName
+      }
+      testRecord.create(newTestRecord,function(err,testRecord) {
         if (err) {
-           throw err;
-               } else {
-
-                        if (enteredKey.toString() === question.correctOption.toString()) {
-                        testRecord.marksObtained = testRecord.marksObtained + 4;
-                        testRecord.save()
-                        }else if (enteredKey.toString() === "None") {
-                        testRecord.marksObtained = testRecord.marksObtained 
-                        testRecord.save()
-                        } else {
-                        testRecord.marksObtained = testRecord.marksObtained - 1;
-                        testRecord.save()   
-                         }
-
-
-        
-   
-
-  }
-})
-
-})
-
-        var  newTestAttemp = {
-        id:testRecord._id,
-        heldOn:testRecord.createdOn,
-        marksObtained:testRecord.marksObtained
-        } 
-
+          throw err;
+        } else {
+          Object.entries(req.body).forEach(function([questionsId,enteredKey]){
+            question.findById(questionsId,function(err,question){
+              if (err) {
+                throw err;
+              } else {
+                if (enteredKey.toString() === question.correctOption.toString()) {
+                  testRecord.marksObtained = testRecord.marksObtained + 4;
+                  testRecord.save()
+                }else if (enteredKey.toString() === "None") {
+                  testRecord.marksObtained = testRecord.marksObtained 
+                  testRecord.save()
+                } else {
+                  testRecord.marksObtained = testRecord.marksObtained - 1;
+                  testRecord.save()   
+                }
+              }
+            })
+          })
+          var  newTestAttemp = {
+          id:testRecord._id,
+          heldOn:testRecord.createdOn,
+          marksObtained:testRecord.marksObtained
+        }
         user.AttemptedTests.push(newTestAttemp)
         user.save()
-
       }
     })
   }
 })
-
-res.send('success')
-
+  res.send('success')
 })
 
  
@@ -164,47 +125,43 @@ router.get('/register',function(req,res){
 
 //Sign Up logic
 router.post('/register',function(req,res){
-var newUser = new User ({username: req.body.username,
+  var newUser = new User ({username: req.body.username,
                          fullName: req.body.fullName,
                          class: req.body.class,
                          email: req.body.email,
                          Batch: req.body.Batch,
                        });
-
-
-User.register(newUser,req.body.password,function(err,user){
-if (err) {
-console.log(err);
-return res.render('register');
-} else {
-passport.authenticate("local")(req,res,function(){
-res.redirect('/');
+  User.register(newUser,req.body.password,function(err,user){
+    if (err) {
+    console.log(err);
+    return res.render('register');
+  } else {
+    passport.authenticate("local")(req,res,function(){
+    res.redirect('/');
+    })
+  }
 })
-}
-
-})
-
 });
 
 
 /////////////////////Login route///////////////////////////
 router.get('/login',function(req,res){
-res.render('login');
+  res.render('login');
 });
 
 //login logic
 // app.post('/login',middleware,callback)
 router.post('/login',passport.authenticate("local",
-{successRedirect: "/",
-failureRedirect: "/login"
+  {successRedirect: "/",
+  failureRedirect: "/login"
 }),function(req,res){
 
 });
 
 
 router.get('/logout',function(req,res){
-req.logout();
-res.redirect('/');
+  req.logout();
+  res.redirect('/');
 });
 
 
