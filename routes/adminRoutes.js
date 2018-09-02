@@ -103,10 +103,8 @@ router.post("/submitQuestion/:id",(req,res)=>{
         console.log(question);
         res.redirect("back")
       }
-})
-
-
-})
+    })
+  })
 
 
 

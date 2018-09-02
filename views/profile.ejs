@@ -1,11 +1,10 @@
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 
+<div></div>
 
 <div class="chart-container" style="position: relative; height:20vh; width:80vw">
-    <canvas id="line-chart"></canvas>
+  <canvas id="line-chart"></canvas>
 </div>
 
 
@@ -13,20 +12,36 @@
 
 
 <script>
-	var ctx = $("#line-chart");
-var lineChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["Jan", "Feb", "Mar","Jan", "Feb", "Mar","Jan"],
-    datasets: [
-      {
+  var ctx = $("#line-chart");
+
+  var datesString = '<%=testDates%>'
+  var marksString = '<%=marksObtainedArray%>'
+
+  var dates = datesString.split(",")
+  var marks = marksString.split(",")
+
+
+  // console.log(datesArray)
+  // console.log(marksArray);
+
+
+
+
+
+  console.log(typeof dates);
+  console.log(typeof marks);
+
+
+  var lineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
         label: "2015",
         backgroundColor: 'rgba(0, 86, 255,0.2)',
         borderColor: 'rgb(0, 86, 255)',
-        data: [2,10,8,6,5,20,0]
-      }
-    ]
-  }
-});
-	
+        data: marks
+      }]
+    }
+  });
 </script>
