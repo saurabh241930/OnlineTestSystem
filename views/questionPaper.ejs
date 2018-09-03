@@ -1,4 +1,4 @@
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,8 @@
 </head>
 <body >
 
-
-	<div class="row">
+ -->
+<!-- 	<div class="row" id="test">
 		
 <div class="col col-lg-2" style="background-color: rgb(0,86,256);text-align: center;">
 
@@ -28,13 +28,10 @@ watch_later
 
 <div class="buttons">
 
-<!--       <%questions.forEach(function(question){%>
- -->        <button id="<%=question._id%>">button</button>
-<!--       <%})%>
- -->
-
-
- <!--  <button id="button1">1</button>
+      <%questions.forEach(function(question){%>
+       <button class="button" id="<%=question._id%>">button</button>
+      <%})%> -->
+<!--  <button id="button1">1</button>
   <button id="button2">2</button>
   <button id="button3">3</button>
   <button id="button4">4</button>
@@ -64,66 +61,45 @@ watch_later
   <button id="button28">28</button>
   <button id="button29">29</button>
   <button id="button30">30</button> -->
-</div>
+<!-- </div>
+</div> -->
 
-
-
-
-</div>
-
-<div class="col col-lg-10" style="background-color: #fff; 
+<!-- <div class="col col-lg-10" style="background-color: #fff; 
 background-image:linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),linear-gradient(#eee .1em, transparent .1em);background-size: 100% 1.2em;float: right;text-align: center;">
-	
-
 	<form action="/submitPaper/<%=testId%>" method="post">
-		
-		<div >
+		<div > -->
 
-			<%questions.forEach(function(question){%>
+     <!--  <%questions.forEach(function(question){%>
+  <div style="border:solid 1px black" class="questionClass">
 
-
-
-<div style="border:solid 1px black" class="questionClass">
 	
 	<h1  style="height: 500px;width: 500px"><%=question.QuestionLink%> </h1><br><br>
 
-<!-- <select >
+<select >
 	<option  value="None">None</option>
 	<option name="option" value="a" onchange="setColor('<%=question._id%>')" >a</option>
 	<option name="option" value="b" onchange="setColor('<%=question._id%>')" >b</option>
 	<option name="option" value="c" onchange="setColor('<%=question._id%>')" >c</option>
 	<option name="option" value="d" onchange="setColor('<%=question._id%>')" >d</option>
 
-</select> -->
- <form action="" id="formId1">
-       <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> Male</label><br> 
-       <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> female</label><br> 
-       <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> others</label><br>
-      </form>
+</select>
+      <form action="" id="formId1">
+         <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> Male</label><br>
+         <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> female</label><br> 
+         <label><input type="radio" name="gender" value="male" onchange="setColor('<%=question._id%>')"> others</label><br>
+      </form> -->
 
-</div>
-
-        
-
-<%})%>
-			
-
+<!-- </div>
+ -->
+<!-- <%})%>
 		</div>
-
-
-
 <button type="submit">submit</button>
-
-
-	</form>
-
-
+</form>
 </div>
+</div>
+ -->
 
-	</div>
-
-
-<script>
+<!-- <script>
 
 // uncomment if you want to reset other button
 
@@ -133,14 +109,16 @@ function setColor(target){
         }
       
 
+  
+
 </script>
+ -->
 
 
 
 
 
-
-
+<!-- 
 <style type="text/css">
 	
 
@@ -208,9 +186,73 @@ function setColor(target){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 </html>
+ -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+<body data-spy="scroll" data-target=".new-question-button">
+  <h1 style="text-align: center;background-color: yellow;">timing</h1>
+  <div class="row" id="main-class">
+    <div class="col-lg-9  col-md-9 col-sm-9"  style="background-color: red; color:white">
+      <form action="/submitPaper/<%=testId%>"  method="post" id="form1">
+        <div class="main-form" id="test-form"> 
+            <%questions.forEach(function(question){%>
+              <div style="border:solid 1px black" class="questionClass">
+                <h1  style=""><%=question.QuestionLink%> </h1><br><br>
+                  <form action="" id="formId1">
+                     <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> Male</label><br>
+                     <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> female</label><br> 
+                     <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> others</label><br>
+                  </form>
+              </div>
+            <%})%>
+        </div>
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3" style="background-color: blue; color:white">
+      <%questions.forEach(function(question){%>
+       <a type="button" href="/test/question/<%=question._id%>" class="new-question-button" id="<%=question._id%>">button</a>
+      <%})%>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<script>
+
+
+// uncomment if you want to reset other button
+// for(var i=1 ;i<4;i++){
+//      var button = document.getElementById("id"+i);
+//       button.style.backgroundColor = "buttonface";
+// }
+function setColor(target){
+  document.getElementById(target).style.backgroundColor = "blue";
+}
 
 
 
 
 
 
+</script>
+
+<style>
+  
+
+
+</style>

@@ -8,6 +8,25 @@ var testRecord = require("../models/testRecord");
 var question = require("../models/question");
 var flash = require("connect-flash");
 
+
+// var perPage = 1;
+// var page = req.params.page;
+// question
+//   .find()
+//   .skip(perPage * page )
+//   .limit( perPage);
+//   .populate("")
+//   .exec(function(err,questions){
+//     if(err) console.log(err);
+//     question.count().exec(function(err,count){
+//       if(err) console.log(err);
+//       res.render("",{
+//         questions,
+//         pages:count / perPage
+//       })
+//     })
+//   })
+
 router.get("/profile", function (req, res) {
   User.findById(req.user._id, function (err, user) {
     if (err) {
