@@ -9,23 +9,6 @@ var question = require("../models/question");
 var flash = require("connect-flash");
 
 
-// var perPage = 1;
-// var page = req.params.page;
-// question
-//   .find()
-//   .skip(perPage * page )
-//   .limit( perPage);
-//   .populate("")
-//   .exec(function(err,questions){
-//     if(err) console.log(err);
-//     question.count().exec(function(err,count){
-//       if(err) console.log(err);
-//       res.render("",{
-//         questions,
-//         pages:count / perPage
-//       })
-//     })
-//   })
 
 router.get("/profile", function (req, res) {
   User.findById(req.user._id, function (err, user) {
@@ -110,29 +93,74 @@ router.get("/", (req, res) => {
   });
 });
 
+// function paginate(req,res,next){
+//   var perPage = 1;
+//         var page = req.params.page;
+//         question.find({testId: test._id})
+//           .skip(perPage * page )
+//           .limit( perPage)
+//           .populate("test")
+//           .exec(function(err,questions){
+//             if(err) console.log(err);
+//             question.count().exec(function(err,count){
+//               if(err) console.log(err);
+//               var testId = req.params.id;
+//               res.render("questionPaper", {
+//                 questions: questions,
+//                 testId: testId,
+//                 pages:count / perPage
+//               });
+//             });
+//           });
+// };
+
 router.get("/test/:id", (req, res) => {
   test.findById(req.params.id, function (err, test) {
     if (err) {
       console.log(err);
     } else {
-      question.find({
-          testId: test._id
-        },
-        function (err, questions) {
-          if (err) {
-            console.log(err);
-          } else {
-            var testId = req.params.id;
-            res.render("questionPaper", {
-              questions: questions,
-              testId: testId
+        var perPage = 1;
+        var page = req.params.page;
+        question.find({testId: test._id})
+          .skip(perPage * page )
+          .limit( perPage)
+          // .populate("test")
+          .exec(function(err,questions){
+            if(err) console.log(err);
+            question.count().exec(function(err,count){
+              if(err) console.log(err);
+              var testId = req.params.id;
+              res.render("questionPaper", {
+                questions: questions,
+                testId: testId,
+                pages:count / perPage
+              });
             });
-          }
-        }
-      );
-    }
+          });
+      }
   });
 });
+
+router.get("/test/:id/page/:page",(req,res)=>{
+var perPage = 1;
+        var page = req.params.page;
+        question.find({testId: test._id})
+          .skip(perPage * page )
+          .limit( perPage)
+          // .populate("test")
+          .exec(function(err,questions){
+            if(err) console.log(err);
+            question.count().exec(function(err,count){
+              if(err) console.log(err);
+              var testId = req.params.id;
+              res.render("questionPaper", {
+                questions: questions,
+                testId: testId,
+                pages:count / perPage
+              });
+            });
+          });
+  })
 
 router.post("/submitPaper/:testId", function (req, res) {
   User.findById(req.user._id, function (err, user) {

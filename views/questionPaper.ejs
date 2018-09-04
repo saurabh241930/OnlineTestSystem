@@ -205,26 +205,39 @@ function setColor(target){
 <body data-spy="scroll" data-target=".new-question-button">
   <h1 style="text-align: center;background-color: yellow;">timing</h1>
   <div class="row" id="main-class">
-    <div class="col-lg-9  col-md-9 col-sm-9"  style="background-color: red; color:white">
+    <div class="col-lg-9  col-md-9 col-sm-9"  style="background-color:red; color:white">
       <form action="/submitPaper/<%=testId%>"  method="post" id="form1">
         <div class="main-form" id="test-form"> 
             <%questions.forEach(function(question){%>
               <div style="border:solid 1px black" class="questionClass">
                 <h1  style=""><%=question.QuestionLink%> </h1><br><br>
-                  <form action="" id="formId1">
+                  
                      <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> Male</label><br>
                      <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> female</label><br> 
                      <label><input type="radio" name="gender" value="show" onchange="setColor('<%=question._id%>')"> others</label><br>
-                  </form>
               </div>
             <%})%>
         </div>
-        <button type="submit">submit</button>
+        
       </form>
+      <nav aria-label="Page navigation example">
+      <ul class="pagination text-center">
+          <li>
+            <% for(var i = 1; i<= pages; i++) { %>
+              <% if( i === 1) { %>
+                <li class="page-item"><a class="page-link" href="/test/<%=testId%>"><%= i %></a></li>
+            <% }else{ %>
+                  <li class="page-item"><a class="page-link" href="/test/<%=testId%>/page/<%= i %>"><%= i %></a></li>
+            <% } %>
+          <% } %>
+          </li>
+        </ul>
+        <button type="submit">submit</button>
+      </nav>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3" style="background-color: blue; color:white">
       <%questions.forEach(function(question){%>
-       <a type="button" href="/test/question/<%=question._id%>" class="new-question-button" id="<%=question._id%>">button</a>
+       <button type="button" href="/test/question/<%=question._id%>" class="new-question-button" id="<%=question._id%>">button</button>
       <%})%>
     </div>
   </div>
@@ -241,7 +254,7 @@ function setColor(target){
 //       button.style.backgroundColor = "buttonface";
 // }
 function setColor(target){
-  document.getElementById(target).style.backgroundColor = "blue";
+  document.getElementById(target).style.backgroundColor = "green";
 }
 
 
