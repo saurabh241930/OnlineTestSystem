@@ -93,13 +93,36 @@ router.get("/", (req, res) => {
   });
 });
 
+// router.get("/test/:id", (req, res) =>{
+//   test.findById(req.params.id, function (err, test) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       question.find({
+//           testId: test._id
+//         }, function (err, questions){
+//           if(err){
+//             console.log(err);
+//           }else{
+//             res.render("questionPaper", {
+//               questions: questions,
+//               testId: testId
+//         })
+//           }
+//         })
+//     }
+//   })
+// })
+
+
+
 // function paginate(req,res,next){
-//   var perPage = 1;
+//    var perPage = 5;
 //         var page = req.params.page;
 //         question.find({testId: test._id})
 //           .skip(perPage * page )
 //           .limit( perPage)
-//           .populate("test")
+//           // .populate("test")
 //           .exec(function(err,questions){
 //             if(err) console.log(err);
 //             question.count().exec(function(err,count){
@@ -119,7 +142,7 @@ router.get("/test/:id", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-        var perPage = 1;
+       var perPage = 1;
         var page = req.params.page;
         question.find({testId: test._id})
           .skip(perPage * page )
@@ -141,8 +164,12 @@ router.get("/test/:id", (req, res) => {
   });
 });
 
-router.get("/test/:id/page/:page",(req,res)=>{
-var perPage = 1;
+router.get("/test/:id/page/:page",(req,res,next)=>{
+ test.findById(req.params.id, function (err, test) {
+    if (err) {
+      console.log(err);
+    } else {
+       var perPage = 1;
         var page = req.params.page;
         question.find({testId: test._id})
           .skip(perPage * page )
@@ -160,6 +187,8 @@ var perPage = 1;
               });
             });
           });
+      }
+  });
   })
 
 router.post("/submitPaper/:testId", function (req, res) {

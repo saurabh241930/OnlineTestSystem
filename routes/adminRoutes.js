@@ -31,24 +31,24 @@ router.get("/tests",(req,res)=>{
 
 
 
-router.get("/test/:id",(req,res)=>{
-  test.findById(req.params.id,function(err,test){
-    if (err) {
-      console.log(err);
-    } else {
-      question.find({'testId':test._id},function(err,questions){
-        if (err) {
-          console.log(err);
-        } else {
-          res.render("questionPaper",{questions:questions})
-        }
+// router.get("/test/:id",(req,res)=>{
+//   test.findById(req.params.id,function(err,test){
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       question.find({'testId':test._id},function(err,questions){
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           res.render("questionPaper",{questions:questions})
+//         }
 
-      })
+//       })
 
-    }
-  })
+//     }
+//   })
 
-})
+// })
 
 
 
